@@ -8,7 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Http\" />
+    <ProjectReference Include="..\TinyWebServer.Abstractions\TinyWebServer.Abstractions.csproj" />
+    <ProjectReference Include="..\TinyWebServer.HttpParser\TinyWebServer.HttpParser.csproj" />
   </ItemGroup>
 
 </Project>

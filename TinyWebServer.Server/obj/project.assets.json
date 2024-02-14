@@ -1,11 +1,49 @@
 {
   "version": 3,
   "targets": {
-    "net7.0": {}
+    "net7.0": {
+      "TinyWebServer.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/TinyWebServer.Abstractions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TinyWebServer.Abstractions.dll": {}
+        }
+      },
+      "TinyWebServer.HttpParser/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "TinyWebServer.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/TinyWebServer.HttpParser.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TinyWebServer.HttpParser.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "TinyWebServer.Abstractions/1.0.0": {
+      "type": "project",
+      "path": "../TinyWebServer.Abstractions/TinyWebServer.Abstractions.csproj",
+      "msbuildProject": "../TinyWebServer.Abstractions/TinyWebServer.Abstractions.csproj"
+    },
+    "TinyWebServer.HttpParser/1.0.0": {
+      "type": "project",
+      "path": "../TinyWebServer.HttpParser/TinyWebServer.HttpParser.csproj",
+      "msbuildProject": "../TinyWebServer.HttpParser/TinyWebServer.HttpParser.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net7.0": []
+    "net7.0": [
+      "TinyWebServer.Abstractions >= 1.0.0",
+      "TinyWebServer.HttpParser >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Administrator\\.nuget\\packages\\": {}
@@ -33,7 +71,14 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.Abstractions\\TinyWebServer.Abstractions.csproj": {
+              "projectPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.Abstractions\\TinyWebServer.Abstractions.csproj"
+            },
+            "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.HttpParser\\TinyWebServer.HttpParser.csproj": {
+              "projectPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.HttpParser\\TinyWebServer.HttpParser.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
