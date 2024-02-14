@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyWebServer.Abstractions"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyWebServer.Server", "TinyWebServer.Server\TinyWebServer.Server.csproj", "{57FCE2EB-9E65-4959-9C1D-6C87DD3D7BA7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyWebServer.HttpParser", "TinyWebServer.HttpParser\TinyWebServer.HttpParser.csproj", "{58DCC558-118F-49CF-9648-857EDA770251}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{57FCE2EB-9E65-4959-9C1D-6C87DD3D7BA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57FCE2EB-9E65-4959-9C1D-6C87DD3D7BA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57FCE2EB-9E65-4959-9C1D-6C87DD3D7BA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58DCC558-118F-49CF-9648-857EDA770251}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58DCC558-118F-49CF-9648-857EDA770251}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58DCC558-118F-49CF-9648-857EDA770251}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58DCC558-118F-49CF-9648-857EDA770251}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

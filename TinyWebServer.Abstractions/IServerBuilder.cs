@@ -8,5 +8,8 @@ namespace TinyWebServer.Abstractions
 {
     public interface IServerBuilder
     {
+        IServerBuilder UseHttpPort(int httpPort);
+        IServerBuilder BindToAddress(string ipAddress);
+        IServer Build();
     }
 }
