@@ -20,6 +20,8 @@ namespace TinyWebServer.Abstractions.Http
         // Set tạm thời vì content khá phức tạp. Ta chỉ phân tích đơn giản một object về response sẽ gồm những gì thui
         IHttpResponseBuilder SetContent(HttpContent content);
 
+        HttpResponse Build();
+
 
     }
 }

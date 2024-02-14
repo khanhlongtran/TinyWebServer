@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TinyWebServer.Abstractions.Http
 {
+    // This is real request (using build() method in HttpWebRequestBuilder
     public class HttpRequest : IWebRequest
     {
         public HttpMethod Method { get; }
