@@ -10,6 +10,8 @@ namespace TinyWebServer.Abstractions
     {
         IServerBuilder UseHttpPort(int httpPort);
         IServerBuilder BindToAddress(string ipAddress);
+        IServerBuilder AddRoot(string rootDirectory);
+        IServerBuilder AddHost(string hostName, string hostDirectory);
         IServer Build();
     }
 }
