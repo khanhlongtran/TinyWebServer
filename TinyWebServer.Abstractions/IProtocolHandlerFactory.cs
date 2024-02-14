@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace TinyWebServer.Abstractions
 {
+    /// <summary>
+    /// This is abstract factory in abstract factory pattern  for Protocol
+    /// </summary>
     public interface IProtocolHandlerFactory
     {
+        IProtocolHandler Create(int protocolVersion);
     }
 }
