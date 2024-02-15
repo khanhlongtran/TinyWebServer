@@ -39,6 +39,12 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.NETCore.Platforms": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -59,14 +65,14 @@
         }
       }
     },
-    "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.HttpParser\\TinyWebServer.HttpParser.csproj": {
+    "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.HttpParse\\TinyWebServer.HttpParse.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.HttpParser\\TinyWebServer.HttpParser.csproj",
-        "projectName": "TinyWebServer.HttpParser",
-        "projectPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.HttpParser\\TinyWebServer.HttpParser.csproj",
+        "projectUniqueName": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.HttpParse\\TinyWebServer.HttpParse.csproj",
+        "projectName": "TinyWebServer.HttpParse",
+        "projectPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.HttpParse\\TinyWebServer.HttpParse.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.HttpParser\\obj\\",
+        "outputPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.HttpParse\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -145,8 +151,8 @@
               "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.Abstractions\\TinyWebServer.Abstractions.csproj": {
                 "projectPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.Abstractions\\TinyWebServer.Abstractions.csproj"
               },
-              "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.HttpParser\\TinyWebServer.HttpParser.csproj": {
-                "projectPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.HttpParser\\TinyWebServer.HttpParser.csproj"
+              "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.HttpParse\\TinyWebServer.HttpParse.csproj": {
+                "projectPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.HttpParse\\TinyWebServer.HttpParse.csproj"
               }
             }
           }
@@ -160,6 +166,12 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.NETCore.Platforms": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

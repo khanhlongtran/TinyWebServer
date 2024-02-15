@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "KYKbtP2qFlld+XWJlK8OAz4kdPFAtVOaS4jr+AWdrH9/A+evXy/DCu+r8Q7TPSGY24LToxWlqsQ4e8IZi0KAzg==",
+  "dgSpecHash": "GUm9Qe5maODhXj81lXegg1LlllNWglSm+UCaBIK9ltd9/81KYRXClnWP7/3GhR2ojOMCPANn54VP4S5bqMKj9g==",
   "success": true,
   "projectFilePath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.Abstractions\\TinyWebServer.Abstractions.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.netcore.platforms\\7.0.0\\microsoft.netcore.platforms.7.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

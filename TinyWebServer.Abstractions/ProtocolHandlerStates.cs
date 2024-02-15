@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace TinyWebServer.Abstractions
 {
-    public enum BuildRequestState
+    public class ProtocolHandlerStates
     {
-        InProgress,
-        Succeeded,
-        Failed
+        public enum BuildRequestStates
+        {
+            InProgress,
+            Succeeded,
+            Failed
+        }
     }
 }

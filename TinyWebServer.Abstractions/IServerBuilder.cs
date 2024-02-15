@@ -12,6 +12,7 @@ namespace TinyWebServer.Abstractions
         IServerBuilder BindToAddress(string ipAddress);
         IServerBuilder AddRoot(string rootDirectory);
         IServerBuilder AddHost(string hostName, string hostDirectory);
+        IServerBuilder UseStaticFiles();
         IServer Build();
     }
 }

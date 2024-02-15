@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using TinyWebServer.Abstractions.Http;
+using static TinyWebServer.Abstractions.ProtocolHandlerStates;
 
 namespace TinyWebServer.Abstractions
 {
@@ -14,13 +15,13 @@ namespace TinyWebServer.Abstractions
     public interface IProtocolHandler
     {
         /// <summary>
-        /// This is abstract product (abstract factory pattern)
+        /// This is abstract product (abstract factory pattern)  for Protocol
         /// </summary>
         int ProtocolVersion
         {
             get;
         }
-        Task<BuildRequestState> ReadRequest(TcpClient tcpClient, IHttpRequestBuilder requestBuilder, ProtocolHandlerData data);
+        Task<BuildRequestStates> ReadRequest(TcpClient tcpClient, IHttpRequestBuilder requestBuilder, ProtocolHandlerData data);
         Task SendResponse(TcpClient tcpClient, IHttpResponseBuilder responseBuilder, ProtocolHandlerData data);
     }
 }

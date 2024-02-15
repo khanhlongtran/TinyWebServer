@@ -8,6 +8,7 @@ namespace TinyWebServer.Abstractions
 {
     /// <summary>
     /// 1 WebRequest include some information when a request incoming like Method, Url, Headers
+    /// Using interface to more loose coupling
     /// </summary>
     public interface IWebRequest
     {

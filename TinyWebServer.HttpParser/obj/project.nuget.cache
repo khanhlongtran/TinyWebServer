@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "wJFQ6eNV3bteFHFB1KXlXTWQT0ABiBZE+2WVx7r0vCeDgj48Bl/kIeTAtiXIBS5dM2jm59X2bDxWUir3ZCejSw==",
+  "dgSpecHash": "PeCkVTrexEnHjbSvBZJqPxldaasnoo4GEV5PTr9dvEFBCQm1/NzVq25YhHy6n6HOenmtl9SsvHHYmvZJoyhZeA==",
   "success": true,
-  "projectFilePath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.HttpParser\\TinyWebServer.HttpParser.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.HttpParser\\TinyWebServer.HttpParser1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.netcore.platforms\\7.0.0\\microsoft.netcore.platforms.7.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
