@@ -78,6 +78,7 @@ namespace TinyWebServer.Server
                     routingService.AddRoute(factory.Create(host.RootDirectory));
                 }
                 // When create Dictionary to hold list host, We also create HostContainer for that host (store it in the dictionary).
+                // StaticFileRoutingService sẽ change DirectoryInfo thành FileInfo để StaticFileCallable có thể đọc
                 hostContainers.Add(host.HostName, new HostContainer(host.HostName, new DirectoryInfo(host.RootDirectory), routingService));
             }
 

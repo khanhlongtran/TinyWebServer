@@ -35,6 +35,7 @@ namespace TinyWebServer.Server.StaticFileSupport
                 url = url.Replace('/', Path.DirectorySeparatorChar);
 
                 // Combine directory to this folder and this file in this folder (url)
+                // Combine current directory + url (phần đằng sau dấu /)
                 var file = new FileInfo(Path.Combine(directoryInfo.FullName, url));
                 if (file.Exists)
                 {
