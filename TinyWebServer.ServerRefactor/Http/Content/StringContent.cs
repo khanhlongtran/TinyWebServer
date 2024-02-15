@@ -16,7 +16,7 @@ namespace TinyWebServer.Server.Http.Content
         private readonly string content;
         public StringContent(String content)
         {
-            this.content = content;
+            this.content = content ?? throw new ArgumentNullException(nameof(content));
         }
 
         public override async Task WriteTo(StreamWriter writer)

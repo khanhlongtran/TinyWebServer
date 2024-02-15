@@ -192,7 +192,7 @@ namespace TinyWebServer.Server
 
         private async void ClientConnectionListeningProc()
         {
-            server = new(config.HttpEndPoint); // Listening from LoopBack IP with Port 80
+            server = new(config.HttpEndPoint); // Listening from LoopBack IP with Port
             server.Start();
             logger.LogInformation("Server has started on {binding}.", config.HttpEndPoint);
             while (running)

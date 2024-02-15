@@ -297,7 +297,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "Microsoft.Extensions.Logging": "7.0.0",
-          "TinyWebService.Abstraction": "1.0.0"
+          "TinyWebService.Abstractions": "1.0.0"
         },
         "compile": {
           "bin/placeholder/TinyWebServer.HttpParse.dll": {}
@@ -312,7 +312,7 @@
         "dependencies": {
           "Microsoft.Extensions.Logging": "7.0.0",
           "TinyWebServer.HttpParse": "1.0.0",
-          "TinyWebService.Abstraction": "1.0.0"
+          "TinyWebService.Abstractions": "1.0.0"
         },
         "compile": {
           "bin/placeholder/TinyWebServer.Server.dll": {}
@@ -321,14 +321,14 @@
           "bin/placeholder/TinyWebServer.Server.dll": {}
         }
       },
-      "TinyWebService.Abstraction/1.0.0": {
+      "TinyWebService.Abstractions/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "compile": {
-          "bin/placeholder/TinyWebService.Abstraction.dll": {}
+          "bin/placeholder/TinyWebService.Abstractions.dll": {}
         },
         "runtime": {
-          "bin/placeholder/TinyWebService.Abstraction.dll": {}
+          "bin/placeholder/TinyWebService.Abstractions.dll": {}
         }
       }
     }
@@ -838,10 +838,10 @@
       "path": "../TinyWebServer.ServerRefactor/TinyWebServer.Server.csproj",
       "msbuildProject": "../TinyWebServer.ServerRefactor/TinyWebServer.Server.csproj"
     },
-    "TinyWebService.Abstraction/1.0.0": {
+    "TinyWebService.Abstractions/1.0.0": {
       "type": "project",
-      "path": "../TinyWebService.Abstraction/TinyWebService.Abstraction.csproj",
-      "msbuildProject": "../TinyWebService.Abstraction/TinyWebService.Abstraction.csproj"
+      "path": "../TinyWebService.Abstraction/TinyWebService.Abstractions.csproj",
+      "msbuildProject": "../TinyWebService.Abstraction/TinyWebService.Abstractions.csproj"
     }
   },
   "projectFileDependencyGroups": {

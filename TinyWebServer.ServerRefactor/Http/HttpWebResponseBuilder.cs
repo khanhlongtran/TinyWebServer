@@ -22,9 +22,10 @@ namespace TinyWebServer.Server.Http
             return this;
         }
 
-        public IHttpResponseBuilder AddHeaders(IEnumerable<KeyValuePair<string, string>> kv)
+        public IHttpResponseBuilder AddHeaders(IEnumerable<KeyValuePair<string, string>> keyValues)
         {
-            foreach (var k in kv)
+
+            foreach (var k in headers)
             {
                 headers.TryAdd(k.Key, k.Value);
             }

@@ -60,7 +60,7 @@ namespace TinyWebServer.Server
             // Empty host => setup default host to folder wwwroot
             if (!hosts.Any())
             {
-                hosts.Add(string.Empty, new HostConfiguration(string.Empty, Path.Combine(new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName ?? string.Empty, "wwwroot")));
+                hosts.Add(string.Empty, new HostConfiguration(string.Empty, Path.Combine(RemoveBinDebugFromPath(new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName) ?? string.Empty, "wwwroot")));
             }
 
             Dictionary<string, HostContainer> hostContainers = new();
@@ -92,6 +92,19 @@ namespace TinyWebServer.Server
             return server;
         }
 
+        string? RemoveBinDebugFromPath(string? path)
+        {
+            // Find the last occurrence of "\bin\"
+            int binIndex = path.LastIndexOf("\\bin\\", StringComparison.OrdinalIgnoreCase);
+
+            if (binIndex != -1)
+            {
+                // Remove everything after "\bin\"
+                return path.Substring(0, binIndex);
+            }
+
+            return path; // No "\bin\" found, return the original path
+        }
         public IServerBuilder UseHttpPort(int httpPort)
         {
             if (httpPort < 0 || httpPort > 65535)

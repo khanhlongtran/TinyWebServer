@@ -31,33 +31,36 @@ namespace TinyWebServer.Server.ProtocolHandlers.Http11
         public async Task<BuildRequestStates> ReadRequest(TcpClient tcpClient, IHttpRequestBuilder httpRequestBuilder, ProtocolHandlerData data)
         {
             BuildRequestStates state = BuildRequestStates.InProgress;
-            // If data is null, it will be value by on the right hand of operator
-            // Get stream data from TcpClient
-            data.Data ??= new Http11ProtocolData(new StreamReader(tcpClient.GetStream()), new StreamWriter(tcpClient.GetStream()));
+
+            data.Data ??= new Http11ProtocolData(
+                new StreamReader(tcpClient.GetStream()),
+                new StreamWriter(tcpClient.GetStream())
+                );
+
             var d = (Http11ProtocolData)data.Data;
 
-            // Read header and request line. Not body
-            if (d.CurrentReadingPart == Http11RequestMessageParts.Header)
+            if (d.CurrentReadingPart == Http11RequestMessageParts.Header) // Read request line and header
             {
                 if (d.Reader.Peek() != -1)
                 {
-                    string? requestLineText = await d.Reader.ReadToEndAsync();
+                    string? requestLineText = await d.Reader.ReadLineAsync();
+
                     if (requestLineText != null)
                     {
                         logger.LogInformation("{requestLine}", requestLineText);
-                        // Request line, parse request from all byte came from tcpClient
+
                         var requestLine = http11Parser.ParseRequestLine(requestLineText);
 
                         if (requestLine != null)
                         {
                             var method = GetHttpMethod(requestLine.Method);
+
                             d.HttpMethod = method;
+                            httpRequestBuilder
+                                .SetMethod(method)
+                                .SetUrl(requestLine.Url);
 
-                            httpRequestBuilder.SetMethod(method)
-                                              .SetUrl(requestLine.Url);
-                            // Because this is header, so we need to read single line => use ReadLine() instead of ReadToEnd()
                             string? headerLineText = d.Reader.ReadLine();
-
                             while (headerLineText != null && d.CurrentReadingPart == Http11RequestMessageParts.Header)
                             {
                                 if (!string.IsNullOrEmpty(headerLineText))
@@ -73,31 +76,33 @@ namespace TinyWebServer.Server.ProtocolHandlers.Http11
                                         logger.LogError("Invalid header line");
                                         state = BuildRequestStates.Failed;
                                     }
-                                    // Read next line
+
                                     headerLineText = d.Reader.ReadLine();
                                 }
                                 else
                                 {
-                                    // indicate the end of header
+                                    // an empty line indicates the end of header
                                     d.CurrentReadingPart = Http11RequestMessageParts.Body;
                                 }
                             }
+
                         }
                         else
                         {
-                            logger.LogError("Invalid header line");
+                            logger.LogError("Invalid request line");
                             state = BuildRequestStates.Failed;
                         }
                     }
-                }
-                else
-                {
-                    logger.LogError("Invalid header line");
-                    state = BuildRequestStates.Failed;
+                    else
+                    {
+                        logger.LogError("Invalid request line");
+                        state = BuildRequestStates.Failed;
+                    }
                 }
             }
             else if (d.CurrentReadingPart == Http11RequestMessageParts.Body)
             {
+                // read body parts
                 if (d.Reader.Peek() != -1)
                 {
                     if (d.HttpMethod == HttpMethod.Get) // GET doesn't have body
@@ -111,7 +116,6 @@ namespace TinyWebServer.Server.ProtocolHandlers.Http11
             }
             else
             {
-                // Done Body and Header => Nothing
                 state = BuildRequestStates.Succeeded;
             }
 
@@ -131,7 +135,7 @@ namespace TinyWebServer.Server.ProtocolHandlers.Http11
             {
                 var response = responseBuilder.Build();
                 await SendResponseStatus(d.Writer, response.StatusCode, response.ReasonPhrase);
-                foreach (var header in response.Headers)    
+                foreach (var header in response.Headers)
                 {
                     await d.Writer.WriteLineAsync($"{header.Key}: {header.Value}");
                 }

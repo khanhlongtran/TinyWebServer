@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TinyWebServer.Server", "Tin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{26379E14-38AB-422C-884C-8BA337C9B655}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyWebService.Abstraction", "TinyWebService.Abstraction\TinyWebService.Abstraction.csproj", "{DED10D84-7C68-45CA-8838-52C7C25B88E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TinyWebService.Abstractions", "TinyWebService.Abstraction\TinyWebService.Abstractions.csproj", "{DED10D84-7C68-45CA-8838-52C7C25B88E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

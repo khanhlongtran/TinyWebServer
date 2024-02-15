@@ -25,6 +25,7 @@ namespace TinyWebServer.Server.StaticFileSupport
         {
             if (url == null)
                 throw new ArgumentNullException(nameof(url));
+
             if (directoryInfo.Exists)
             {
                 if (url.StartsWith("/"))

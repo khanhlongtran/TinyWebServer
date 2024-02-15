@@ -28,8 +28,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebService.Abstraction\\TinyWebService.Abstraction.csproj": {
-                "projectPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebService.Abstraction\\TinyWebService.Abstraction.csproj"
+              "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebService.Abstraction\\TinyWebService.Abstractions.csproj": {
+                "projectPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebService.Abstraction\\TinyWebService.Abstractions.csproj"
               }
             }
           }
@@ -96,8 +96,8 @@
               "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.HttpParse\\TinyWebServer.HttpParse.csproj": {
                 "projectPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.HttpParse\\TinyWebServer.HttpParse.csproj"
               },
-              "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebService.Abstraction\\TinyWebService.Abstraction.csproj": {
-                "projectPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebService.Abstraction\\TinyWebService.Abstraction.csproj"
+              "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebService.Abstraction\\TinyWebService.Abstractions.csproj": {
+                "projectPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebService.Abstraction\\TinyWebService.Abstractions.csproj"
               }
             }
           }
@@ -214,12 +214,12 @@
         }
       }
     },
-    "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebService.Abstraction\\TinyWebService.Abstraction.csproj": {
+    "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebService.Abstraction\\TinyWebService.Abstractions.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebService.Abstraction\\TinyWebService.Abstraction.csproj",
-        "projectName": "TinyWebService.Abstraction",
-        "projectPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebService.Abstraction\\TinyWebService.Abstraction.csproj",
+        "projectUniqueName": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebService.Abstraction\\TinyWebService.Abstractions.csproj",
+        "projectName": "TinyWebService.Abstractions",
+        "projectPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebService.Abstraction\\TinyWebService.Abstractions.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
         "outputPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebService.Abstraction\\obj\\",
         "projectStyle": "PackageReference",

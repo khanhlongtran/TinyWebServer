@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TinyWebServer.HttpParse\TinyWebServer.HttpParse.csproj" />
-    <ProjectReference Include="..\TinyWebService.Abstraction\TinyWebService.Abstraction.csproj" />
+    <ProjectReference Include="..\TinyWebService.Abstraction\TinyWebService.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>
