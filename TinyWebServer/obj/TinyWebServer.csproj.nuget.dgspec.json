@@ -4,14 +4,14 @@
     "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer\\TinyWebServer.csproj": {}
   },
   "projects": {
-    "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.Abstractions\\TinyWebServer.Abstractions.csproj": {
+    "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.HttpParse\\TinyWebServer.HttpParse.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.Abstractions\\TinyWebServer.Abstractions.csproj",
-        "projectName": "TinyWebServer.Abstractions",
-        "projectPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.Abstractions\\TinyWebServer.Abstractions.csproj",
+        "projectUniqueName": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.HttpParse\\TinyWebServer.HttpParse.csproj",
+        "projectName": "TinyWebServer.HttpParse",
+        "projectPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.HttpParse\\TinyWebServer.HttpParse.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.Abstractions\\obj\\",
+        "outputPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.HttpParse\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -27,7 +27,11 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebService.Abstraction\\TinyWebService.Abstraction.csproj": {
+                "projectPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebService.Abstraction\\TinyWebService.Abstraction.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -40,7 +44,75 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
-            "Microsoft.NETCore.Platforms": {
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.ServerRefactor\\TinyWebServer.Server.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.ServerRefactor\\TinyWebServer.Server.csproj",
+        "projectName": "TinyWebServer.Server",
+        "projectPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.ServerRefactor\\TinyWebServer.Server.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.ServerRefactor\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.HttpParse\\TinyWebServer.HttpParse.csproj": {
+                "projectPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.HttpParse\\TinyWebServer.HttpParse.csproj"
+              },
+              "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebService.Abstraction\\TinyWebService.Abstraction.csproj": {
+                "projectPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebService.Abstraction\\TinyWebService.Abstraction.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.Extensions.Logging": {
               "target": "Package",
               "version": "[7.0.0, )"
             }
@@ -89,8 +161,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.Abstractions\\TinyWebServer.Abstractions.csproj": {
-                "projectPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.Abstractions\\TinyWebServer.Abstractions.csproj"
+              "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.ServerRefactor\\TinyWebServer.Server.csproj": {
+                "projectPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebServer.ServerRefactor\\TinyWebServer.Server.csproj"
               }
             }
           }
@@ -109,11 +181,74 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.Extensions.Logging.Console": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
             "Microsoft.NETCore.Platforms": {
               "target": "Package",
               "version": "[7.0.0, )"
             }
           },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebService.Abstraction\\TinyWebService.Abstraction.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebService.Abstraction\\TinyWebService.Abstraction.csproj",
+        "projectName": "TinyWebService.Abstraction",
+        "projectPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebService.Abstraction\\TinyWebService.Abstraction.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "E:\\FPT\\Ky V\\ITV\\TinyWebServer\\TinyWebService.Abstraction\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
           "imports": [
             "net461",
             "net462",

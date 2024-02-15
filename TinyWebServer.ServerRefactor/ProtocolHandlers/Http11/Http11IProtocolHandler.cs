@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -19,9 +20,10 @@ namespace TinyWebServer.Server.ProtocolHandlers.Http11
     public class Http11IProtocolHandler : IProtocolHandler
     {
         private readonly IHttp11Parser http11Parser;
-
-        public Http11IProtocolHandler(IHttp11Parser http11Parser)
+        private readonly ILogger logger;
+        public Http11IProtocolHandler(IHttp11Parser http11Parser, ILogger logger)
         {
+            this.logger = logger;
             this.http11Parser = http11Parser;
         }
         public int ProtocolVersion => 101;
@@ -37,53 +39,60 @@ namespace TinyWebServer.Server.ProtocolHandlers.Http11
             // Read header and request line. Not body
             if (d.CurrentReadingPart == Http11RequestMessageParts.Header)
             {
-                string? requestLineText = await d.Reader.ReadToEndAsync();
                 if (d.Reader.Peek() != -1)
                 {
-                    // Request line, parse request from all byte came from tcpClient
-                    var requestLine = http11Parser.ParseRequestLine(requestLineText);
-
-                    if (requestLine != null)
+                    string? requestLineText = await d.Reader.ReadToEndAsync();
+                    if (requestLineText != null)
                     {
-                        var method = GetHttpMethod(requestLine.Method);
-                        d.HttpMethod = method;
+                        logger.LogInformation("{requestLine}", requestLineText);
+                        // Request line, parse request from all byte came from tcpClient
+                        var requestLine = http11Parser.ParseRequestLine(requestLineText);
 
-                        httpRequestBuilder.SetMethod(method)
-                                          .SetUrl(requestLine.Url);
-                        // Because this is header, so we need to read single line => use ReadLine() instead of ReadToEnd()
-                        string? headerLineText = d.Reader.ReadLine();
-
-                        while (headerLineText != null && d.CurrentReadingPart == Http11RequestMessageParts.Header)
+                        if (requestLine != null)
                         {
-                            if (!string.IsNullOrEmpty(headerLineText))
-                            {
-                                var headerLine = http11Parser.ParseHeaderLine(headerLineText);
+                            var method = GetHttpMethod(requestLine.Method);
+                            d.HttpMethod = method;
 
-                                if (headerLine != null)
+                            httpRequestBuilder.SetMethod(method)
+                                              .SetUrl(requestLine.Url);
+                            // Because this is header, so we need to read single line => use ReadLine() instead of ReadToEnd()
+                            string? headerLineText = d.Reader.ReadLine();
+
+                            while (headerLineText != null && d.CurrentReadingPart == Http11RequestMessageParts.Header)
+                            {
+                                if (!string.IsNullOrEmpty(headerLineText))
                                 {
-                                    httpRequestBuilder.AddHeader(headerLine.Name, headerLine.Value);
+                                    var headerLine = http11Parser.ParseHeaderLine(headerLineText);
+
+                                    if (headerLine != null)
+                                    {
+                                        httpRequestBuilder.AddHeader(headerLine.Name, headerLine.Value);
+                                    }
+                                    else
+                                    {
+                                        logger.LogError("Invalid header line");
+                                        state = BuildRequestStates.Failed;
+                                    }
+                                    // Read next line
+                                    headerLineText = d.Reader.ReadLine();
                                 }
                                 else
                                 {
-                                    state = BuildRequestStates.Failed;
+                                    // indicate the end of header
+                                    d.CurrentReadingPart = Http11RequestMessageParts.Body;
                                 }
-                                // Read next line
-                                headerLineText = d.Reader.ReadLine();
-                            }
-                            else
-                            {
-                                // indicate the end of header
-                                d.CurrentReadingPart = Http11RequestMessageParts.Body;
                             }
                         }
-                    }
-                    else
-                    {
-                        state = BuildRequestStates.Failed;
+                        else
+                        {
+                            logger.LogError("Invalid header line");
+                            state = BuildRequestStates.Failed;
+                        }
                     }
                 }
                 else
                 {
+                    logger.LogError("Invalid header line");
                     state = BuildRequestStates.Failed;
                 }
             }
@@ -93,6 +102,7 @@ namespace TinyWebServer.Server.ProtocolHandlers.Http11
                 {
                     if (d.HttpMethod == HttpMethod.Get) // GET doesn't have body
                     {
+                        logger.LogError("GET cannot have a body");
                         state = BuildRequestStates.Failed;
                     }
                 }
@@ -114,13 +124,14 @@ namespace TinyWebServer.Server.ProtocolHandlers.Http11
             // Data is byte[], so we convert to Http11ProtocolData to read and write. But if it not, it wrong
             if (data.Data is not Http11ProtocolData d)
             {
+                logger.LogError("Invalid ProtocolHandlerData");
                 await SendResponseStatus(new StreamWriter(tcpClient.GetStream()), HttpStatusCode.InternalServerError, "Internal Server Error");
             }
             else
             {
                 var response = responseBuilder.Build();
                 await SendResponseStatus(d.Writer, response.StatusCode, response.ReasonPhrase);
-                foreach (var header in response.Headers)
+                foreach (var header in response.Headers)    
                 {
                     await d.Writer.WriteLineAsync($"{header.Key}: {header.Value}");
                 }

@@ -1,41 +1,11 @@
 {
   "version": 3,
   "targets": {
-    "net7.0": {
-      "Microsoft.NETCore.Platforms/7.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard1.0/_._": {}
-        },
-        "runtime": {
-          "lib/netstandard1.0/_._": {}
-        }
-      }
-    }
+    "net7.0": {}
   },
-  "libraries": {
-    "Microsoft.NETCore.Platforms/7.0.0": {
-      "sha512": "ZmCEGPLRDVy0WF6erzJw0G+puBM6s2DxRzRqvYvgHmXE6e34P0HVRtNl6s3nKKSDkD3DQH1QLKWL7fKe3GBSUA==",
-      "type": "package",
-      "path": "microsoft.netcore.platforms/7.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "LICENSE.TXT",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/netstandard1.0/_._",
-        "microsoft.netcore.platforms.7.0.0.nupkg.sha512",
-        "microsoft.netcore.platforms.nuspec",
-        "runtime.json",
-        "useSharedDesignerContext.txt"
-      ]
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    "net7.0": [
-      "Microsoft.NETCore.Platforms >= 7.0.0"
-    ]
+    "net7.0": []
   },
   "packageFolders": {
     "C:\\Users\\Administrator\\.nuget\\packages\\": {}
@@ -75,12 +45,6 @@
     "frameworks": {
       "net7.0": {
         "targetAlias": "net7.0",
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": {
-            "target": "Package",
-            "version": "[7.0.0, )"
-          }
-        },
         "imports": [
           "net461",
           "net462",

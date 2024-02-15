@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,9 +15,11 @@ namespace TinyWebServer.Server.StaticFileSupport
     public class StaticFileCallable : ICallableResource
     {
         private readonly FileInfo file;
-        public StaticFileCallable(FileInfo file)
+        private readonly ILogger logger;
+        public StaticFileCallable(FileInfo file, ILogger logger)
         {
             this.file = file;
+            this.logger = logger;
         }
         public async Task OnGet(HttpRequest request, IHttpResponseBuilder responseObjectBuilder)
         {
@@ -36,11 +39,15 @@ namespace TinyWebServer.Server.StaticFileSupport
                         StandardResponseBuilderHelpers.Ok(responseObjectBuilder);
 
                     }
-                } catch 
+                } catch (Exception ex)
                 {
-                    StandardResponseBuilderHelpers.NotFound(responseObjectBuilder);
+                    logger.LogError(ex, message: null);
                 }
 
+            }
+            else
+            {
+                StandardResponseBuilderHelpers.NotFound(responseObjectBuilder);
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,22 +31,30 @@ namespace TinyWebServer.Server
         private readonly ConcurrentQueue<TinyWebClientConnection> waitingClients = new();
         private static EventWaitHandle clientConnectionWaitHandle = new(false, EventResetMode.AutoReset);
         private bool disposed = false;
+        private CancellationTokenSource acceptCancellationTokenSource = new();
+        private CancellationToken acceptCancellationToken;
+        private readonly ILogger logger;
 
-        public TinyWebServer(TinyWebServerConfiguration config, IProtocolHandlerFactory protocolHandlerFactory, Dictionary<string, HostContainer> hostContainers)
+        public TinyWebServer(TinyWebServerConfiguration config, IProtocolHandlerFactory protocolHandlerFactory, Dictionary<string, HostContainer> hostContainers, ILogger logger)
         {
             this.config = config;
             this.protocolHandlerFactory = protocolHandlerFactory;
             this.hostContainers = hostContainers;
             running = false;
+            this.logger = logger;
         }
 
 
         public void Start()
         {
+            logger.LogInformation("Starting web server...");
             running = true;
+
+            acceptCancellationToken = acceptCancellationTokenSource.Token;
 
             // Create Thread to listen in server
             new Thread(ClientConnectionListeningProc) { IsBackground = false }.Start();
+
 
             for (int i = 1; i <= config.ThreadPoolSize; i++)
             {
@@ -57,9 +66,10 @@ namespace TinyWebServer.Server
         private async void ClientConnectionProcessingProc(object? data)
         {
             int n = (int)data; // convert number of thread
-
+            logger.LogInformation("Starting ThreadPool.Thread {n}", n);
             while (running)
             {
+                logger.LogDebug("ThreadPool.Thread {n} processing...", n);
                 // Set() be called. This wil be process
                 clientConnectionWaitHandle.WaitOne(TimeSpan.FromSeconds(3));
                 if (running)
@@ -76,11 +86,12 @@ namespace TinyWebServer.Server
 
                 }
             }
-
+            logger.LogInformation("ThreadPool.Thread {n} stopped", n);
         }
 
         private async Task<TinyWebClientConnection> ProcessClientConnection(TinyWebClientConnection client)
         {
+            logger.LogDebug("Processing client connection: {client}", client.Id);
             try
             {
                 if (client.State == TinyWebClientConnection.States.Pending || client.State == TinyWebClientConnection.States.BuildingRequestObject)
@@ -144,8 +155,9 @@ namespace TinyWebServer.Server
                 {
                     ReleaseResources(client);
                 }
-            } catch
+            } catch (Exception ex)
             {
+                logger.LogError(ex, "Error processing client connection");
                 client.TcpClient.Close();
                 return null;
             }
@@ -163,7 +175,7 @@ namespace TinyWebServer.Server
                 }
             } catch (Exception ex)
             {
-                throw new Exception(ex.ToString());
+                logger.LogError(ex, "Error executing resource");
             }
         }
 
@@ -182,16 +194,16 @@ namespace TinyWebServer.Server
         {
             server = new(config.HttpEndPoint); // Listening from LoopBack IP with Port 80
             server.Start();
-
+            logger.LogInformation("Server has started on {binding}.", config.HttpEndPoint);
             while (running)
             {
                 try
                 {
-                    TcpClient client = await server.AcceptTcpClientAsync();
+                    TcpClient client = await server.AcceptTcpClientAsync(acceptCancellationToken);
                     HandleNewClientConnection(client);
                 } catch (Exception ex)
                 {
-                    throw new ArgumentException(ex.ToString());
+                    logger.LogError(ex, null);
                 }
             }
         }
@@ -203,7 +215,7 @@ namespace TinyWebServer.Server
                 protocolHandlerFactory.Create(ProtocolHandlerFactory.HTTP11),
                 TinyWebClientConnection.States.Pending);
             waitingClients.Enqueue(client);
-
+            logger.LogInformation("New client connected");
             clientConnectionWaitHandle.Set(); // allow proceed
 
         }
@@ -211,6 +223,7 @@ namespace TinyWebServer.Server
         public void Stop()
         {
             running = false;
+            acceptCancellationTokenSource.Cancel();
             server?.Stop();
 
             Task.Delay(5000).Wait();

@@ -9,6 +9,7 @@ using TinyWebServer.Server.Host;
 using TinyWebServer.Server.StaticFileSupport;
 using System.Reflection;
 using TinyWebServer.Server.Routing;
+using Microsoft.Extensions.Logging;
 
 namespace TinyWebServer.Server
 {
@@ -24,6 +25,11 @@ namespace TinyWebServer.Server
         private readonly Dictionary<string, HostConfiguration> hosts = new();
         // Find route in hostContainer 
         private readonly List<IRoutingServiceFactory> routingServiceFactories = new();
+        private readonly ILogger<TinyWebServerBuilder> logger;
+        public TinyWebServerBuilder(ILogger<TinyWebServerBuilder>? logger)
+        {
+            this.logger = logger;
+        }
         public IServerBuilder AddHost(string hostName, string hostDirectory)
         {
             hosts[hostName] = new HostConfiguration(hostName, hostDirectory);
@@ -80,8 +86,9 @@ namespace TinyWebServer.Server
                 HttpEndPoint = new(address, httpPort),
                 Hosts = hosts.Values.ToList(),
             },
-            new ProtocolHandlerFactory(),
-            hostContainers);
+            new ProtocolHandlerFactory(logger),
+            hostContainers,
+            logger);
             return server;
         }
 
@@ -97,7 +104,7 @@ namespace TinyWebServer.Server
 
         public IServerBuilder UseStaticFiles()
         {
-            return AddRoutingServiceFactory(new StaticFileRoutingServiceFactory());
+            return AddRoutingServiceFactory(new StaticFileRoutingServiceFactory(logger));
         }
         public IServerBuilder AddRoutingServiceFactory(IRoutingServiceFactory routingServiceFactory)
         {

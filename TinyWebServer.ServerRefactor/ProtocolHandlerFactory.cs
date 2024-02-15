@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,11 +16,17 @@ namespace TinyWebServer.Server
     public class ProtocolHandlerFactory : IProtocolHandlerFactory
     {
         public const int HTTP11 = 101;
+        private readonly ILogger logger;
+        public ProtocolHandlerFactory(ILogger logger)
+        {
+            this.logger = logger;
+        }
+
         public IProtocolHandler Create(int protocolVersion)
         {
             if (protocolVersion == HTTP11)
             {
-                return new Http11IProtocolHandler(new RegexHttp11Parsers());
+                return new Http11IProtocolHandler(new RegexHttp11Parsers(), logger);
             }
             throw new ArgumentOutOfRangeException(nameof(protocolVersion), "Unknown protocol version");
         }

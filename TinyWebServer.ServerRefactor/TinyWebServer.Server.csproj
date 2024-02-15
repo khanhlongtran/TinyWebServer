@@ -7,9 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TinyWebServer.Abstractions\TinyWebServer.Abstractions.csproj" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TinyWebServer.HttpParse\TinyWebServer.HttpParse.csproj" />
-    <ProjectReference Include="..\TinyWebServer\TinyWebServer.csproj" />
+    <ProjectReference Include="..\TinyWebService.Abstraction\TinyWebService.Abstraction.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,9 +14,11 @@ namespace TinyWebServer.Server.StaticFileSupport
     public class StaticFileRoutingService : IRoutingService
     {
         private readonly DirectoryInfo directoryInfo;
-        public StaticFileRoutingService(DirectoryInfo directoryInfo)
+        private readonly ILogger logger;
+        public StaticFileRoutingService(DirectoryInfo directoryInfo, ILogger logger)
         {
             this.directoryInfo = directoryInfo ?? throw new ArgumentNullException(nameof(directoryInfo));
+            this.logger = logger;
         }
 
         public ICallableResource? FindRoute(string url)
@@ -34,7 +37,7 @@ namespace TinyWebServer.Server.StaticFileSupport
                 var file = new FileInfo(Path.Combine(directoryInfo.FullName, url));
                 if (file.Exists)
                 {
-                    return new StaticFileCallable(file);
+                    return new StaticFileCallable(file, logger);
                 }
             }
             return null;

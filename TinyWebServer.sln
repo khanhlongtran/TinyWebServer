@@ -5,11 +5,13 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TinyWebServer", "TinyWebServer\TinyWebServer.csproj", "{8751A2D2-AB15-4E08-BFD1-E59D2DBA3BDA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TinyWebServer.Abstractions", "TinyWebServer.Abstractions\TinyWebServer.Abstractions.csproj", "{299D0ADC-5D0D-4B51-B7DF-D87281864F78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TinyWebServer.HttpParse", "TinyWebServer.HttpParse\TinyWebServer.HttpParse.csproj", "{23804027-B9EA-4A6F-AA4A-8218F24F713B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyWebServer.HttpParse", "TinyWebServer.HttpParse\TinyWebServer.HttpParse.csproj", "{23804027-B9EA-4A6F-AA4A-8218F24F713B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TinyWebServer.Server", "TinyWebServer.ServerRefactor\TinyWebServer.Server.csproj", "{FE8A1365-C6DD-4AB6-BB11-EB102C0362D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyWebServer.Server", "TinyWebServer.ServerRefactor\TinyWebServer.Server.csproj", "{FE8A1365-C6DD-4AB6-BB11-EB102C0362D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{26379E14-38AB-422C-884C-8BA337C9B655}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyWebService.Abstraction", "TinyWebService.Abstraction\TinyWebService.Abstraction.csproj", "{DED10D84-7C68-45CA-8838-52C7C25B88E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +23,6 @@ Global
 		{8751A2D2-AB15-4E08-BFD1-E59D2DBA3BDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8751A2D2-AB15-4E08-BFD1-E59D2DBA3BDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8751A2D2-AB15-4E08-BFD1-E59D2DBA3BDA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{299D0ADC-5D0D-4B51-B7DF-D87281864F78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{299D0ADC-5D0D-4B51-B7DF-D87281864F78}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{299D0ADC-5D0D-4B51-B7DF-D87281864F78}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{299D0ADC-5D0D-4B51-B7DF-D87281864F78}.Release|Any CPU.Build.0 = Release|Any CPU
 		{23804027-B9EA-4A6F-AA4A-8218F24F713B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{23804027-B9EA-4A6F-AA4A-8218F24F713B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23804027-B9EA-4A6F-AA4A-8218F24F713B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +31,14 @@ Global
 		{FE8A1365-C6DD-4AB6-BB11-EB102C0362D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE8A1365-C6DD-4AB6-BB11-EB102C0362D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE8A1365-C6DD-4AB6-BB11-EB102C0362D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26379E14-38AB-422C-884C-8BA337C9B655}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26379E14-38AB-422C-884C-8BA337C9B655}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26379E14-38AB-422C-884C-8BA337C9B655}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26379E14-38AB-422C-884C-8BA337C9B655}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DED10D84-7C68-45CA-8838-52C7C25B88E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DED10D84-7C68-45CA-8838-52C7C25B88E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DED10D84-7C68-45CA-8838-52C7C25B88E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DED10D84-7C68-45CA-8838-52C7C25B88E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using TinyWebServer.Abstractions;   
-
+using TinyWebServer.Abstractions;
+using TinyWebServer.Server;
+using Microsoft.Extensions.Logging;
 namespace TinyWebServer
 {
     class Program
@@ -16,7 +17,7 @@ namespace TinyWebServer
 
             if (serviceBuilder == null)
             {
-                Console.WriteLine("Error creating ServerBuilder");
+                serviceProvider.GetService<ILogger>()?.LogError("Error creating ServerBuilder");
                 return;
             }
 
@@ -34,6 +35,8 @@ namespace TinyWebServer
 
         private static void ConfigureServices(IServiceCollection services)
         {
+            services.AddLogging(configure => configure.AddConsole());
+            services.AddTransient<IServerBuilder>(services => new TinyWebServerBuilder(services.GetService<ILogger<TinyWebServerBuilder>>()));
         }
     }
 }

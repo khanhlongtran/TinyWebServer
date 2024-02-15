@@ -9,11 +9,13 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="7.0.0" />
     <PackageReference Include="Microsoft.NETCore.Platforms" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TinyWebServer.Abstractions\TinyWebServer.Abstractions.csproj" />
+    <ProjectReference Include="..\TinyWebServer.ServerRefactor\TinyWebServer.Server.csproj" />
   </ItemGroup>
 
 </Project>
